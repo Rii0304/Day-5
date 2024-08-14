@@ -1,8 +1,10 @@
 package jpa;
 
 import jpa.configuration.SpringConfig;
+import jpa.entity.BookDetailsEntity;
 import jpa.entity.BookEntity;
 import jpa.entity.CategoryEntity;
+import jpa.repository.BookDetailsRepository;
 import jpa.repository.BookRepository;
 import jpa.repository.CategoryRepository;
 import org.springframework.context.ApplicationContext;
@@ -14,9 +16,11 @@ public class Main {
     static ApplicationContext context = new AnnotationConfigApplicationContext(SpringConfig.class);
     static BookRepository bookRepository = (BookRepository) context.getBean("bookRepository");
     static CategoryRepository categoryRepository = (CategoryRepository) context.getBean(("categoryRepository"));
+    static BookDetailsRepository bookDetailsRepository = (BookDetailsRepository) context.getBean(("bookDetailsRepository"));
+
     public static void main(String[] args){
 //        createNewBookEntityWithNewCategory();
-        createNewBookEntity();
+//        createNewBookEntity();
 //        findByAuthor("Roger");
 //        findByNameAndAuthor("lunix", "Roger");
 //        findByNameOrAuthor("lunix", "Roger");
@@ -24,7 +28,31 @@ public class Main {
 //        findByBookDetailsIsbn("ISIBF1219321");
 //        findByNameContaining("Nu");
 //        findAllUsingQuery();
+//        newBook();
     }
+
+//    private static void newBook(){
+//        CategoryEntity categoryEntity = new CategoryEntity();
+//        categoryEntity.setName("IT");
+//        categoryEntity.setDescription("IT Books");
+//
+//        categoryRepository.save(categoryEntity);
+//
+//        BookEntity bookEntity = new BookEntity();
+//        bookEntity.setName("Java A-z");
+//        bookEntity.setAuthor("Roger");
+//        bookEntity.setCategory(categoryEntity);
+//
+//        bookRepository.save(bookEntity);
+//
+//        BookDetailsEntity bookDetails = new BookDetailsEntity();
+//        bookDetails.setIsbn("ISIBF 1219323");
+//        bookDetails.setNumberOfPage(23);
+//        bookDetails.setPrice(65);
+//
+//        bookDetailsRepository.save(bookDetails);
+//    }
+
 //    public static void findByAuthor(String author){
 //        List<BookEntity> bookEntityList = bookRepository.findByAuthor(author);
 //        if (bookEntityList != null) {
@@ -91,10 +119,5 @@ public class Main {
         bookEntity.setCategory(categoryEntity);
         bookRepository.save(bookEntity);
 
-    }
-    public static BookEntity createNewBook() {
-        BookEntity bookEntity = new BookEntity();
-        bookEntity.setAuthor("Sample Author");
-        return bookEntity;
     }
 }
